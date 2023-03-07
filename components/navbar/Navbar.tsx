@@ -7,9 +7,33 @@ import NotificationMenuItem from "./NotificationMenuItem";
 
 export default function Navbar() {
   const [isDarkMode, setDarkMode] = useState(false);
+  const [isNotificationOpen, setNotificationOpen] = useState(false);
+  const [isApplicationOpen, setApplicationOpen] = useState(false);
+  const [isProfileOpen, setProfileOpen] = useState(false);
 
   function toggleThemeHandler() {
     setDarkMode(!isDarkMode);
+    setNotificationOpen(false);
+    setApplicationOpen(false);
+    setProfileOpen(false);
+  }
+
+  function toggleNotificationHandler() {
+    setNotificationOpen(!isNotificationOpen);
+    setApplicationOpen(false);
+    setProfileOpen(false);
+  }
+
+  function toggleApplicationHandler() {
+    setApplicationOpen(!isApplicationOpen);
+    setNotificationOpen(false);
+    setProfileOpen(false);
+  }
+
+  function toggleProfileHandler() {
+    setProfileOpen(!isProfileOpen);
+    setNotificationOpen(false);
+    setApplicationOpen(false);
   }
 
   return (
@@ -50,7 +74,7 @@ export default function Navbar() {
                 ></path>
               </svg>
             </button>
-            <Link href="#" className="flex ml-2 md:mr-24">
+            <Link href="/" className="flex ml-2 md:mr-24">
               <Image
                 src="/logo.svg"
                 className="h-8 mr-3"
@@ -118,6 +142,7 @@ export default function Navbar() {
               className="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700"
               type="button"
               data-dropdown-toggle="notification-dropdown"
+              onClick={toggleNotificationHandler}
             >
               <span className="sr-only">View notifications</span>
               {/* Bell icon */}
@@ -132,7 +157,9 @@ export default function Navbar() {
             </button>
             {/* Dropdown menu */}
             <div
-              className="z-20 hidden overflow-hidden max-w-sm my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow-lg dark:divide-gray-600 dark:bg-gray-700"
+              className={`${
+                isNotificationOpen ? "absolute" : "hidden"
+              } z-20 right-0 top-10 overflow-hidden max-w-sm my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow-lg dark:divide-gray-600 dark:bg-gray-700`}
               id="notification-dropdown"
             >
               <div className="block px-4 py-2 text-base font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -244,9 +271,10 @@ export default function Navbar() {
             </div>
             {/* Apps */}
             <button
+              className="hidden p-2 text-gray-500 rounded-lg sm:flex hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700"
               type="button"
               data-dropdown-toggle="apps-dropdown"
-              className="hidden p-2 text-gray-500 rounded-lg sm:flex hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700"
+              onClick={toggleApplicationHandler}
             >
               <span className="sr-only">View notifications</span>
               {/* Icon */}
@@ -261,7 +289,9 @@ export default function Navbar() {
             </button>
             {/* Dropdown menu */}
             <div
-              className="z-20 hidden max-w-sm my-4 overflow-hidden text-base list-none bg-white divide-y divide-gray-100 rounded shadow-lg dark:bg-gray-700 dark:divide-gray-600"
+              className={`${
+                isApplicationOpen ? "absolute" : "hidden"
+              } z-20 right-0 top-10 max-w-sm my-4 overflow-hidden text-base list-none bg-white divide-y divide-gray-100 rounded shadow-lg dark:bg-gray-700 dark:divide-gray-600`}
               id="apps-dropdown"
             >
               <div className="block px-4 py-2 text-base font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -438,11 +468,12 @@ export default function Navbar() {
             <div className="flex items-center ml-3">
               <div>
                 <button
-                  type="button"
                   className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                  type="button"
                   id="user-menu-button-2"
                   aria-expanded="false"
                   data-dropdown-toggle="dropdown-2"
+                  onClick={toggleProfileHandler}
                 >
                   <span className="sr-only">Open user menu</span>
                   <Image
@@ -456,7 +487,9 @@ export default function Navbar() {
               </div>
               {/* Dropdown menu */}
               <div
-                className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+                className={`${
+                  isProfileOpen ? "absolute" : "hidden"
+                } z-50 right-0 top-10 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600`}
                 id="dropdown-2"
               >
                 <div className="px-4 py-3" role="none">
