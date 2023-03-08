@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import SubMenuItem from "./SubMenuItem";
 
-export default function Sidebar() {
+interface SidebarProps {
+  activeMenu: string;
+}
+
+export default function Sidebar(props: SidebarProps) {
+  const { activeMenu } = props;
+
   const [isLayoutsOpen, setLayoutsOpen] = useState(false);
   const [isTablesOpen, setTablesOpen] = useState(false);
   const [isPagesOpen, setPagesOpen] = useState(false);
@@ -72,11 +78,17 @@ export default function Sidebar() {
                 </li>
                 <li>
                   <Link
-                    href="#"
-                    className="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700 bg-gray-100 dark:bg-gray-700"
+                    href="/"
+                    className={`${
+                      activeMenu === "dashboard"
+                        ? "bg-gray-100 dark:bg-gray-700"
+                        : ""
+                    } flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700`}
                   >
                     <svg
-                      className="w-6 h-6 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white text-gray-900"
+                      className={`${
+                        activeMenu === "Dashboard" ? "text-gray-900" : ""
+                      } w-6 h-6 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
@@ -89,6 +101,32 @@ export default function Sidebar() {
                       sidebar-toggle-item="true"
                     >
                       Dashboard
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/settings"
+                    className="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700"
+                  >
+                    <svg
+                      className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path
+                        clipRule="evenodd"
+                        fillRule="evenodd"
+                        d="M8.34 1.804A1 1 0 019.32 1h1.36a1 1 0 01.98.804l.295 1.473c.497.144.971.342 1.416.587l1.25-.834a1 1 0 011.262.125l.962.962a1 1 0 01.125 1.262l-.834 1.25c.245.445.443.919.587 1.416l1.473.294a1 1 0 01.804.98v1.361a1 1 0 01-.804.98l-1.473.295a6.95 6.95 0 01-.587 1.416l.834 1.25a1 1 0 01-.125 1.262l-.962.962a1 1 0 01-1.262.125l-1.25-.834a6.953 6.953 0 01-1.416.587l-.294 1.473a1 1 0 01-.98.804H9.32a1 1 0 01-.98-.804l-.295-1.473a6.957 6.957 0 01-1.416-.587l-1.25.834a1 1 0 01-1.262-.125l-.962-.962a1 1 0 01-.125-1.262l.834-1.25a6.957 6.957 0 01-.587-1.416l-1.473-.294A1 1 0 011 10.68V9.32a1 1 0 01.804-.98l1.473-.295c.144-.497.342-.971.587-1.416l-.834-1.25a1 1 0 01.125-1.262l.962-.962A1 1 0 015.38 3.03l1.25.834a6.957 6.957 0 011.416-.587l.294-1.473zM13 10a3 3 0 11-6 0 3 3 0 016 0z"
+                      ></path>
+                    </svg>
+                    <span
+                      className="flex-1 ml-3 text-left whitespace-nowrap"
+                      sidebar-toggle-item="true"
+                    >
+                      Settings
                     </span>
                   </Link>
                 </li>
@@ -133,8 +171,16 @@ export default function Sidebar() {
                       isLayoutsOpen ? "" : "hidden"
                     } py-2 space-y-2`}
                   >
-                    <SubMenuItem href="#" title="Stacked" />
-                    <SubMenuItem href="#" title="Sidebar" />
+                    <SubMenuItem
+                      isSubMenuActive={false}
+                      href="#"
+                      title="Stacked"
+                    />
+                    <SubMenuItem
+                      isSubMenuActive={false}
+                      href="#"
+                      title="Sidebar"
+                    />
                   </ul>
                 </li>
                 <li>
@@ -182,8 +228,16 @@ export default function Sidebar() {
                     id="dropdown-tables"
                     className={`${isTablesOpen ? "" : "hidden"} space-y-2 py-2`}
                   >
-                    <SubMenuItem href="#" title="Products" />
-                    <SubMenuItem href="#" title="Users" />
+                    <SubMenuItem
+                      isSubMenuActive={false}
+                      href="#"
+                      title="Products"
+                    />
+                    <SubMenuItem
+                      isSubMenuActive={activeMenu === "users" ? true : false}
+                      href="/tables/users"
+                      title="Users"
+                    />
                   </ul>
                 </li>
                 <li>
@@ -256,10 +310,26 @@ export default function Sidebar() {
                     id="dropdown-pages"
                     className={`${isPagesOpen ? "" : "hidden"} py-2 space-y-2`}
                   >
-                    <SubMenuItem href="#" title="Pricing" />
-                    <SubMenuItem href="#" title="Maintenance" />
-                    <SubMenuItem href="#" title="404 not found" />
-                    <SubMenuItem href="#" title="500 server error" />
+                    <SubMenuItem
+                      isSubMenuActive={false}
+                      href="#"
+                      title="Pricing"
+                    />
+                    <SubMenuItem
+                      isSubMenuActive={false}
+                      href="#"
+                      title="Maintenance"
+                    />
+                    <SubMenuItem
+                      isSubMenuActive={false}
+                      href="#"
+                      title="404 not found"
+                    />
+                    <SubMenuItem
+                      isSubMenuActive={false}
+                      href="#"
+                      title="500 server error"
+                    />
                   </ul>
                 </li>
                 <li>
@@ -308,11 +378,31 @@ export default function Sidebar() {
                       isAuthenticationOpen ? "" : "hidden"
                     } py-2 space-y-2`}
                   >
-                    <SubMenuItem href="#" title="Sign in" />
-                    <SubMenuItem href="#" title="Sign up" />
-                    <SubMenuItem href="#" title="Forgot password" />
-                    <SubMenuItem href="#" title="Reset password" />
-                    <SubMenuItem href="#" title="Profile lock" />
+                    <SubMenuItem
+                      isSubMenuActive={false}
+                      href="#"
+                      title="Sign in"
+                    />
+                    <SubMenuItem
+                      isSubMenuActive={false}
+                      href="#"
+                      title="Sign up"
+                    />
+                    <SubMenuItem
+                      isSubMenuActive={false}
+                      href="#"
+                      title="Forgot password"
+                    />
+                    <SubMenuItem
+                      isSubMenuActive={false}
+                      href="#"
+                      title="Reset password"
+                    />
+                    <SubMenuItem
+                      isSubMenuActive={false}
+                      href="#"
+                      title="Profile lock"
+                    />
                   </ul>
                 </li>
                 <li>
@@ -362,8 +452,16 @@ export default function Sidebar() {
                       isPlaygroundOpen ? "" : "hidden"
                     } space-y-2 py-2`}
                   >
-                    <SubMenuItem href="#" title="Stacked" />
-                    <SubMenuItem href="#" title="Sidebar" />
+                    <SubMenuItem
+                      isSubMenuActive={false}
+                      href="#"
+                      title="Stacked"
+                    />
+                    <SubMenuItem
+                      isSubMenuActive={false}
+                      href="#"
+                      title="Sidebar"
+                    />
                   </ul>
                 </li>
               </ul>
