@@ -1,13 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import SubMenuItem from "./SubMenuItem";
 
 interface SidebarProps {
   activeMenu: string;
+  isSidebarOpen: boolean;
 }
 
 export default function Sidebar(props: SidebarProps) {
-  const { activeMenu } = props;
+  const { activeMenu, isSidebarOpen } = props;
 
   const [isLayoutsOpen, setLayoutsOpen] = useState(false);
   const [isTablesOpen, setTablesOpen] = useState(false);
@@ -39,7 +40,9 @@ export default function Sidebar(props: SidebarProps) {
     <>
       <aside
         id="sidebar"
-        className="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 w-64 h-full pt-16 font-normal duration-75 lg:flex transition-width"
+        className={`${
+          isSidebarOpen ? "" : "hidden"
+        } flex fixed top-0 left-0 z-20 flex-col flex-shrink-0 w-64 h-full pt-16 font-normal duration-75 lg:flex transition-width`}
         aria-label="Sidebar"
       >
         <div className="relative flex flex-col flex-1 min-h-0 pt-0 bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -785,7 +788,7 @@ export default function Sidebar(props: SidebarProps) {
       </aside>
 
       <div
-        className="fixed inset-0 z-10 hidden bg-gray-900/50 dark:bg-gray-900/90"
+        className={`${isSidebarOpen ? "" : "hidden"} fixed inset-0 z-10 bg-gray-900/50 dark:bg-gray-900/90`}
         id="sidebarBackdrop"
       ></div>
     </>

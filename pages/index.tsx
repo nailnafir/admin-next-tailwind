@@ -1,8 +1,15 @@
+import React, { useState } from "react";
 import Navbar from "@/components/Navbar/Navbar";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Head from "next/head";
 
 export default function Home() {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  function sidebarHandler() {
+    setSidebarOpen(!isSidebarOpen);
+  }
+
   return (
     <>
       <Head>
@@ -11,8 +18,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
-      <Sidebar activeMenu="dashboard" />
+      <Navbar
+        isSidebarOpen={isSidebarOpen}
+        onClickToggleNavbar={sidebarHandler}
+      />
+      <Sidebar isSidebarOpen={isSidebarOpen} activeMenu="dashboard" />
     </>
   );
 }

@@ -9,9 +9,14 @@ import Navbar from "@/components/Navbar/Navbar";
 import Sidebar from "@/components/Sidebar/Sidebar";
 
 export default function Users() {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isAddModalOpen, setAddModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  function sidebarHandler() {
+    setSidebarOpen(!isSidebarOpen);
+  }
 
   function showHideAddModal() {
     setAddModalOpen(!isAddModalOpen);
@@ -48,9 +53,12 @@ export default function Users() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
+      <Navbar
+        isSidebarOpen={isSidebarOpen}
+        onClickToggleNavbar={sidebarHandler}
+      />
       <div className="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
-        <Sidebar activeMenu="users" />
+        <Sidebar isSidebarOpen={isSidebarOpen} activeMenu="users" />
         <div
           id="main-content"
           className="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900"
