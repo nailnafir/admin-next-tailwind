@@ -15,6 +15,7 @@ export default function Sidebar(props: SidebarProps) {
   const [isPagesOpen, setPagesOpen] = useState(false);
   const [isAuthenticationOpen, setAuthenticationOpen] = useState(false);
   const [isPlaygroundOpen, setPlaygroundOpen] = useState(false);
+  const [isLanguageOpen, setLanguageOpen] = useState(false);
 
   function layoutsHandler() {
     setLayoutsOpen(!isLayoutsOpen);
@@ -34,6 +35,10 @@ export default function Sidebar(props: SidebarProps) {
 
   function playgroundHandler() {
     setPlaygroundOpen(!isPlaygroundOpen);
+  }
+
+  function languageHandler() {
+    setLanguageOpen(!isLanguageOpen);
   }
 
   return (
@@ -104,32 +109,6 @@ export default function Sidebar(props: SidebarProps) {
                       sidebar-toggle-item="true"
                     >
                       Dashboard
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/settings"
-                    className="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700"
-                  >
-                    <svg
-                      className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                    >
-                      <path
-                        clipRule="evenodd"
-                        fillRule="evenodd"
-                        d="M8.34 1.804A1 1 0 019.32 1h1.36a1 1 0 01.98.804l.295 1.473c.497.144.971.342 1.416.587l1.25-.834a1 1 0 011.262.125l.962.962a1 1 0 01.125 1.262l-.834 1.25c.245.445.443.919.587 1.416l1.473.294a1 1 0 01.804.98v1.361a1 1 0 01-.804.98l-1.473.295a6.95 6.95 0 01-.587 1.416l.834 1.25a1 1 0 01-.125 1.262l-.962.962a1 1 0 01-1.262.125l-1.25-.834a6.953 6.953 0 01-1.416.587l-.294 1.473a1 1 0 01-.98.804H9.32a1 1 0 01-.98-.804l-.295-1.473a6.957 6.957 0 01-1.416-.587l-1.25.834a1 1 0 01-1.262-.125l-.962-.962a1 1 0 01-.125-1.262l.834-1.25a6.957 6.957 0 01-.587-1.416l-1.473-.294A1 1 0 011 10.68V9.32a1 1 0 01.804-.98l1.473-.295c.144-.497.342-.971.587-1.416l-.834-1.25a1 1 0 01.125-1.262l.962-.962A1 1 0 015.38 3.03l1.25.834a6.957 6.957 0 011.416-.587l.294-1.473zM13 10a3 3 0 11-6 0 3 3 0 016 0z"
-                      ></path>
-                    </svg>
-                    <span
-                      className="flex-1 ml-3 text-left whitespace-nowrap"
-                      sidebar-toggle-item="true"
-                    >
-                      Settings
                     </span>
                   </Link>
                 </li>
@@ -383,27 +362,27 @@ export default function Sidebar(props: SidebarProps) {
                   >
                     <SubMenuItem
                       isSubMenuActive={false}
-                      href="#"
+                      href="/authentication/sign-in"
                       title="Sign in"
                     />
                     <SubMenuItem
                       isSubMenuActive={false}
-                      href="#"
+                      href="/authentication/sign-up"
                       title="Sign up"
                     />
                     <SubMenuItem
                       isSubMenuActive={false}
-                      href="#"
+                      href="/authentication/forgot-password"
                       title="Forgot password"
                     />
                     <SubMenuItem
                       isSubMenuActive={false}
-                      href="#"
+                      href="/authentication/reset-password"
                       title="Reset password"
                     />
                     <SubMenuItem
                       isSubMenuActive={false}
-                      href="#"
+                      href="/authentication/profile-lock"
                       title="Profile lock"
                     />
                   </ul>
@@ -534,9 +513,9 @@ export default function Sidebar(props: SidebarProps) {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fillRule="evenodd"
+                      fill-rule="evenodd"
                       d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z"
-                      clipRule="evenodd"
+                      clip-rule="evenodd"
                     ></path>
                   </svg>
                   <span className="ml-3" sidebar-toggle-item="true">
@@ -564,7 +543,7 @@ export default function Sidebar(props: SidebarProps) {
               </svg>
             </Link>
             <Link
-              href="#"
+              href="/settings"
               data-tooltip-target="tooltip-settings"
               className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
             >
@@ -590,9 +569,10 @@ export default function Sidebar(props: SidebarProps) {
               <div className="tooltip-arrow" data-popper-arrow></div>
             </div>
             <button
+              className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
               type="button"
               data-dropdown-toggle="language-dropdown"
-              className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+              onClick={languageHandler}
             >
               <svg
                 className="h-5 w-5 rounded-full mt-0.5"
@@ -634,7 +614,9 @@ export default function Sidebar(props: SidebarProps) {
             </button>
             {/* Dropdown */}
             <div
-              className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700"
+              className={`${
+                isLanguageOpen ? "absolute" : "hidden"
+              } bottom-12 right-0 z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700`}
               id="language-dropdown"
             >
               <ul className="py-1" role="none">
@@ -788,7 +770,9 @@ export default function Sidebar(props: SidebarProps) {
       </aside>
 
       <div
-        className={`${isSidebarOpen ? "" : "hidden"} fixed inset-0 z-10 bg-gray-900/50 dark:bg-gray-900/90`}
+        className={`${
+          isSidebarOpen ? "" : "hidden"
+        } fixed inset-0 z-10 bg-gray-900/50 dark:bg-gray-900/90`}
         id="sidebarBackdrop"
       ></div>
     </>
