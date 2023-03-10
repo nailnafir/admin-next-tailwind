@@ -13,7 +13,7 @@ export default function ProfileLock() {
             <div className="flex space-x-4">
               <Image
                 className="w-8 h-8 rounded-full"
-                src="/images/bonnie-green.png"
+                src="/images/users/bonnie-green.png"
                 alt="Bonnie image"
                 width={50}
                 height={50}

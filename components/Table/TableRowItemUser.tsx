@@ -47,7 +47,7 @@ export default function TableRowItemUser(props: TableRowItemUserProps) {
         <td className="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
           <Image
             className="w-10 h-10 rounded-full"
-            src={`/images/${avatar}`}
+            src={`/images/users/${avatar}`}
             alt={`${name} avatar`}
             width={150}
             height={150}

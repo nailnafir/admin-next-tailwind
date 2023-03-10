@@ -178,7 +178,7 @@ export default function Navbar(props: NavbarProps) {
                 Notifications
               </div>
               <div>
-                <NotificationMenuItem image="/images/bonnie-green.png">
+                <NotificationMenuItem image="/images/users/bonnie-green.png">
                   <div className="w-full pl-3">
                     <div className="text-gray-500 font-normal text-sm mb-1.5 dark:text-gray-400">
                       New message from{" "}
@@ -193,7 +193,7 @@ export default function Navbar(props: NavbarProps) {
                     </div>
                   </div>
                 </NotificationMenuItem>
-                <NotificationMenuItem image="/images/jese-leos.png">
+                <NotificationMenuItem image="/images/users/jese-leos.png">
                   <div className="w-full pl-3">
                     <div className="text-gray-500 font-normal text-sm mb-1.5 dark:text-gray-400">
                       <span className="font-semibold text-gray-900 dark:text-white">
@@ -210,7 +210,7 @@ export default function Navbar(props: NavbarProps) {
                     </div>
                   </div>
                 </NotificationMenuItem>
-                <NotificationMenuItem image="/images/joseph-mcfall.png">
+                <NotificationMenuItem image="/images/users/joseph-mcfall.png">
                   <div className="w-full pl-3">
                     <div className="text-gray-500 font-normal text-sm mb-1.5 dark:text-gray-400">
                       <span className="font-semibold text-gray-900 dark:text-white">
@@ -227,7 +227,7 @@ export default function Navbar(props: NavbarProps) {
                     </div>
                   </div>
                 </NotificationMenuItem>
-                <NotificationMenuItem image="/images/leslie-livingston.png">
+                <NotificationMenuItem image="/images/users/leslie-livingston.png">
                   <div className="w-full pl-3">
                     <div className="text-gray-500 font-normal text-sm mb-1.5 dark:text-gray-400">
                       <span className="font-semibold text-gray-900 dark:text-white">
@@ -244,7 +244,7 @@ export default function Navbar(props: NavbarProps) {
                     </div>
                   </div>
                 </NotificationMenuItem>
-                <NotificationMenuItem image="/images/robert-brown.png">
+                <NotificationMenuItem image="/images/users/robert-brown.png">
                   <div className="w-full pl-3">
                     <div className="text-gray-500 font-normal text-sm mb-1.5 dark:text-gray-400">
                       <span className="font-semibold text-gray-900 dark:text-white">
@@ -493,7 +493,7 @@ export default function Navbar(props: NavbarProps) {
                   <span className="sr-only">Open user menu</span>
                   <Image
                     className="w-8 h-8 rounded-full"
-                    src="/images/michael-gough.png"
+                    src="/images/users/michael-gough.png"
                     width={150}
                     height={150}
                     alt="user photo"
