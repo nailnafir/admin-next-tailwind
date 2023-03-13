@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TableHeadRowItemUser from "@/components/Table/TableHeadRowItemUser";
 import usersData from "@/data/users.json";
 import TableRowItemUser from "./TableRowItemUser";
-import Breadcrumb from "./Breadcrumb";
+import Breadcrumb from "../Headers/Breadcrumb";
 import Link from "next/link";
 
 interface TableUserProps {

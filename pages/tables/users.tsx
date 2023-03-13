@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ModalAddUser from "@/components/Modals/ModalAddUser";
 import ModalDeleteUser from "@/components/Modals/ModalDeleteUser";
 import ModalEditUser from "@/components/Modals/ModalEditUser";
-import Pagination from "@/components/Table/Pagination";
+import Pagination from "@/components/Footers/Pagination";
 import TableUser from "@/components/Table/TableUser";
 import Navbar from "@/components/Navbar/Navbar";
 import Sidebar from "@/components/Sidebar/Sidebar";
